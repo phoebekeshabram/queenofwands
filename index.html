@@ -1,0 +1,1186 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Queen of Wands Astromancy | Phoebe A. Rose</title>
+<meta name="description" content="Tarot readings, astrology birth charts, and shadow work sessions with Phoebe A. Rose. For those committed to deep spiritual growth and soul alchemy.">
+<link href="https://fonts.googleapis.com/css2?family=Kings&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ── Reset & Base ─────────────────────────────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --deep:       #07060a;
+  --dark:       #0f0d14;
+  --panel:      #16131e;
+  --card:       #1e1a28;
+  --gold:       #c9a84c;
+  --gold-lt:    #e8cc7e;
+  --gold-pale:  #f5e6c0;
+  --gold-dim:   #7a6030;
+  --cream:      #f0e6c8;
+  --muted:      #7a6b8a;
+  --periwinkle: #ACACDE;
+  --text:       #d4c8b0;
+  --border:     rgba(201,168,76,0.18);
+  --glow:       rgba(201,168,76,0.06);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--deep);
+  color: var(--text);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 17px;
+  line-height: 1.8;
+  overflow-x: hidden;
+  cursor: default;
+}
+
+/* Custom cursor */
+body { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='3' fill='%23c9a84c' opacity='0.8'/%3E%3C/svg%3E") 10 10, auto; }
+
+/* ── Canvas Stars ─────────────────────────────────── */
+#star-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.7;
+}
+
+/* ── Layout ───────────────────────────────────────── */
+.site-wrap { position: relative; z-index: 1; }
+
+/* ── NAV ──────────────────────────────────────────── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 0 48px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to bottom, rgba(7,6,10,0.95), transparent);
+  transition: background 0.4s;
+}
+nav.scrolled {
+  background: rgba(7,6,10,0.96);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+}
+.nav-logo {
+  font-family: 'Kings', cursive;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gold-lt);
+  letter-spacing: 0.08em;
+  text-decoration: none;
+}
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--gold-lt); }
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+  padding: 4px;
+}
+.nav-toggle span {
+  display: block; width: 24px; height: 1px;
+  background: var(--gold); transition: all 0.3s;
+}
+
+/* ── HERO ─────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 40px 80px;
+  position: relative;
+}
+
+.hero-glow {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px; height: 700px;
+  background: radial-gradient(ellipse at center, rgba(201,168,76,0.07) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.hero-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 0.55em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: riseIn 1s ease forwards 0.4s;
+}
+
+.hero h1 {
+  font-family: 'Kings', cursive;
+  font-size: clamp(48px, 8vw, 88px);
+  font-weight: 400;
+  color: var(--gold-lt);
+  line-height: 1.05;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+  opacity: 0;
+  animation: riseIn 1.1s ease forwards 0.6s;
+}
+
+.hero h1 em {
+  font-style: normal;
+  font-weight: 600;
+  color: var(--gold-lt);
+  text-shadow: 0 0 8px rgba(201,168,76,0.4), 0 0 20px rgba(201,168,76,0.2), 0 0 40px rgba(201,168,76,0.1);
+}
+
+.hero-divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 28px auto;
+  width: 360px;
+  max-width: 90%;
+  opacity: 0;
+  animation: riseIn 1s ease forwards 0.9s;
+}
+.hero-divider-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); }
+.hero-divider-gem { color: var(--gold); font-size: 12px; }
+
+.hero-sub {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(18px, 2.5vw, 22px);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--periwinkle);
+  max-width: 560px;
+  margin: 0 auto 48px;
+  opacity: 0;
+  animation: riseIn 1s ease forwards 1.1s;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  opacity: 0;
+  animation: riseIn 1s ease forwards 1.3s;
+}
+
+.btn-primary {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--deep);
+  background: linear-gradient(135deg, var(--gold-lt), var(--gold));
+  border: none;
+  padding: 16px 40px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.3s, box-shadow 0.3s, opacity 0.3s;
+  display: inline-block;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(201,168,76,0.3);
+}
+
+.btn-ghost {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: transparent;
+  border: 1px solid rgba(201,168,76,0.4);
+  padding: 16px 40px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s;
+  display: inline-block;
+}
+.btn-ghost:hover {
+  border-color: var(--gold);
+  background: rgba(201,168,76,0.06);
+  transform: translateY(-2px);
+}
+
+.scroll-cue {
+  position: absolute;
+  bottom: 40px; left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  animation: riseIn 1s ease forwards 2s;
+}
+.scroll-cue span {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+}
+.scroll-line {
+  width: 1px; height: 48px;
+  background: linear-gradient(to bottom, var(--gold-dim), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%,100% { transform: scaleY(1); opacity: 0.4; }
+  50% { transform: scaleY(1.3); opacity: 1; }
+}
+
+/* ── SECTION COMMONS ──────────────────────────────── */
+section { position: relative; z-index: 1; }
+
+.section-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 100px 40px;
+}
+
+.section-label {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 0.55em;
+  color: var(--gold);
+  text-transform: uppercase;
+  text-align: center;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-family: 'Kings', cursive;
+  font-size: clamp(32px, 4.5vw, 48px);
+  font-weight: 400;
+  color: var(--gold-lt);
+  text-align: center;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.section-sub {
+  font-family: 'Montserrat', sans-serif;
+  font-style: italic;
+  font-size: 19px;
+  color: var(--periwinkle);
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 60px;
+}
+
+.gold-rule {
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  margin: 24px auto;
+}
+
+/* ── ABOUT ────────────────────────────────────────── */
+.about-section { background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.03), transparent); }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 80px;
+  align-items: center;
+  margin-top: 60px;
+}
+
+.about-image-frame {
+  position: relative;
+}
+.about-image-frame::before {
+  content: '';
+  position: absolute;
+  inset: -12px;
+  border: 1px solid rgba(201,168,76,0.2);
+  pointer-events: none;
+}
+.about-image-frame::after {
+  content: '';
+  position: absolute;
+  inset: -24px;
+  border: 1px solid rgba(201,168,76,0.08);
+  pointer-events: none;
+}
+.about-image-placeholder {
+  width: 100%;
+  aspect-ratio: 3/4;
+  background: linear-gradient(135deg, var(--panel), var(--card));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+.about-image-placeholder:hover { border-color: rgba(201,168,76,0.4); }
+.about-image-placeholder .symbol { font-size: 48px; opacity: 0.3; }
+.about-image-placeholder p {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+}
+.about-image-placeholder img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.about-image-placeholder.has-image .symbol,
+.about-image-placeholder.has-image p { display: none; }
+.about-image-placeholder .upload-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(7,6,10,0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 2;
+}
+.about-image-placeholder:hover .upload-overlay { opacity: 1; }
+.about-image-placeholder .upload-overlay span {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+.about-image-placeholder .upload-overlay .upload-icon { font-size: 28px; opacity: 0.8; }
+
+/* ── About Image ─────────────────────────────────── */
+.about-image {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  transition: border-color 0.3s;
+}
+.about-image:hover { border-color: rgba(201,168,76,0.4); }
+#photo-upload { display: none; }
+
+.about-name {
+  font-family: 'Kings', cursive;
+  font-size: 38px;
+  font-weight: 400;
+  color: var(--gold-lt);
+  margin-bottom: 6px;
+  font-style: italic;
+}
+.about-title-tag {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 0.45em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  display: block;
+}
+.about-text {
+  font-size: 16px;
+  color: var(--text);
+  line-height: 1.9;
+  margin-bottom: 16px;
+}
+.about-text em {
+  color: var(--cream);
+  font-style: italic;
+}
+
+/* ── OFFERINGS ────────────────────────────────────── */
+.offerings-section {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.offerings-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 16px;
+}
+
+.offering-card {
+  border: 1px solid var(--border);
+  padding: 44px 36px;
+  background: linear-gradient(160deg, var(--card), var(--dark));
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.4s, transform 0.4s;
+  cursor: default;
+}
+.offering-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.offering-card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-6px); }
+.offering-card:hover::before { opacity: 1; }
+
+.offering-glyph {
+  font-size: 32px;
+  margin-bottom: 20px;
+  display: block;
+  opacity: 0.8;
+}
+.offering-tag {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 0.5em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: block;
+}
+.offering-name {
+  font-family: 'Kings', cursive;
+  font-size: 26px;
+  font-weight: 500;
+  color: var(--gold-lt);
+  margin-bottom: 14px;
+  line-height: 1.2;
+}
+.offering-desc {
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+.offering-price {
+  font-family: 'Kings', cursive;
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+.offering-price-note {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+.offering-includes {
+  list-style: none;
+  margin-bottom: 32px;
+}
+.offering-includes li {
+  font-size: 13px;
+  color: var(--text);
+  padding: 5px 0;
+  padding-left: 18px;
+  position: relative;
+  border-bottom: 1px solid rgba(201,168,76,0.07);
+}
+.offering-includes li::before {
+  content: '◆';
+  position: absolute; left: 0;
+  font-size: 5px;
+  color: var(--gold);
+  top: 50%; transform: translateY(-50%);
+}
+
+/* ── WHO THIS IS FOR ──────────────────────────────── */
+.filter-section { text-align: center; }
+
+.filter-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  max-width: 760px;
+  margin: 0 auto 48px;
+  text-align: left;
+}
+
+.filter-item {
+  padding: 28px 32px;
+  border-left: 2px solid var(--gold);
+  background: rgba(201,168,76,0.03);
+}
+.filter-item.no {
+  border-left-color: rgba(122,96,48,0.4);
+  background: rgba(122,96,48,0.03);
+}
+
+.filter-label {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  display: block;
+}
+.filter-item .filter-label { color: var(--gold); }
+.filter-item.no .filter-label { color: var(--gold-dim); }
+
+.filter-list { list-style: none; }
+.filter-list li {
+  font-size: 15px;
+  color: var(--text);
+  padding: 5px 0 5px 20px;
+  position: relative;
+}
+.filter-list li::before {
+  position: absolute; left: 0;
+  font-size: 10px;
+  top: 6px;
+}
+.filter-item .filter-list li::before { content: '✦'; color: var(--gold); }
+.filter-item.no .filter-list li::before { content: '◇'; color: var(--gold-dim); }
+
+/* ── BOOKING ──────────────────────────────────────── */
+.booking-section {
+  background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.04), transparent);
+}
+
+.booking-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+  margin-top: 60px;
+}
+
+.booking-block-title {
+  font-family: 'Kings', cursive;
+  font-size: 26px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--gold-lt);
+  margin-bottom: 8px;
+}
+.booking-block-sub {
+  font-size: 14px;
+  color: var(--periwinkle);
+  margin-bottom: 28px;
+  line-height: 1.7;
+}
+
+/* Calendly inline widget */
+.calendly-inline-widget {
+  min-height: 700px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+
+/* Contact form */
+.contact-form { display: flex; flex-direction: column; gap: 16px; }
+
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+
+.form-label {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 0.45em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.form-input, .form-select, .form-textarea {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--cream);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  padding: 14px 18px;
+  outline: none;
+  transition: border-color 0.3s;
+  width: 100%;
+  resize: none;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: rgba(201,168,76,0.5);
+}
+.form-input::placeholder, .form-textarea::placeholder { color: var(--muted); }
+.form-select { cursor: pointer; appearance: none; }
+.form-select option { background: var(--dark); }
+.form-textarea { min-height: 130px; }
+
+.form-note {
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+  line-height: 1.7;
+}
+
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 32px;
+  border: 1px solid rgba(201,168,76,0.3);
+  background: rgba(201,168,76,0.04);
+}
+.form-success.show { display: block; }
+.form-success p {
+  font-family: 'Kings', cursive;
+  font-size: 22px;
+  font-style: italic;
+  color: var(--gold-lt);
+}
+
+/* ── TESTIMONIALS ─────────────────────────────────── */
+.testimonials-section { border-top: 1px solid var(--border); }
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 16px;
+}
+
+.testimonial-card {
+  padding: 36px 30px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  position: relative;
+  transition: border-color 0.3s;
+}
+.testimonial-card:hover { border-color: rgba(201,168,76,0.3); }
+
+.testimonial-quote {
+  font-family: 'Kings', cursive;
+  font-size: 42px;
+  color: var(--gold);
+  opacity: 0.3;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.testimonial-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 17px;
+  font-style: italic;
+  color: var(--cream);
+  line-height: 1.75;
+  margin-bottom: 20px;
+}
+.testimonial-name {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 0.4em;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+}
+.testimonial-note {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* ── FOOTER ───────────────────────────────────────── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 60px 40px 40px;
+  text-align: center;
+  position: relative; z-index: 1;
+}
+
+.footer-logo {
+  font-family: 'Kings', cursive;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--gold-lt);
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+}
+.footer-tagline {
+  font-family: 'Montserrat', sans-serif;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--periwinkle);
+  margin-bottom: 32px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  list-style: none;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+.footer-links a {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 0.4em;
+  color: var(--muted);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--gold); }
+
+.footer-divider {
+  width: 120px; height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  margin: 0 auto 24px;
+}
+
+.footer-copy {
+  font-size: 12px;
+  color: var(--gold-dim);
+}
+
+/* ── ANIMATIONS ───────────────────────────────────── */
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── RESPONSIVE ───────────────────────────────────── */
+@media (max-width: 900px) {
+  .offerings-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+  .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  .about-image-placeholder { aspect-ratio: 4/3; }
+  .booking-grid { grid-template-columns: 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+  .filter-grid { grid-template-columns: 1fr; }
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .nav-toggle { display: flex; }
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 72px; left: 0; right: 0;
+    background: rgba(7,6,10,0.98);
+    padding: 32px 24px;
+    gap: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-links.open a { font-size: 14px; }
+}
+@media (max-width: 600px) {
+  .section-inner { padding: 72px 24px; }
+  .hero { padding: 100px 24px 70px; }
+  .hero-ctas { flex-direction: column; align-items: center; }
+  .btn-primary, .btn-ghost { width: 240px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── Starfield Canvas ──────────────────────────── -->
+<canvas id="star-canvas"></canvas>
+
+<div class="site-wrap">
+
+<!-- ── NAV ──────────────────────────────────────── -->
+<nav id="main-nav">
+  <a href="#" class="nav-logo">Queen of Wands</a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#offerings">Offerings</a></li>
+    <li><a href="#for-you">For You?</a></li>
+    <li><a href="#booking">Book</a></li>
+    <li><a href="#booking">Contact</a></li>
+  </ul>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ── HERO ──────────────────────────────────────── -->
+<section class="hero" id="home">
+  <div class="hero-glow"></div>
+  <p class="hero-eyebrow">Astromancy · Shadow Work · Soul Alchemy</p>
+  <h1>Queen of <em>Wands</em></h1>
+  <div class="hero-divider">
+    <div class="hero-divider-line"></div>
+    <span class="hero-divider-gem">✦</span>
+    <div class="hero-divider-line"></div>
+  </div>
+  <p class="hero-sub">For those ready to meet themselves in the dark and emerge as fire.</p>
+  <div class="hero-ctas">
+    <a href="#offerings" class="btn-primary">Explore Offerings</a>
+    <a href="#booking" class="btn-ghost">Book a Session</a>
+  </div>
+  <div class="scroll-cue">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ── ABOUT ─────────────────────────────────────── -->
+<section class="about-section" id="about">
+  <div class="section-inner">
+    <span class="section-label reveal">The Guide</span>
+    <h2 class="section-title reveal">Astrology, Tarot, and Shadow Work are the tools. You are the Map.</h2>
+    <div class="gold-rule reveal"></div>
+
+    <div class="about-grid">
+      <div class="about-image-frame reveal">
+        <img src="photo.jpg/phoebe-photo.JPG" alt="Phoebe A. Rose" class="about-image">
+      </div>
+      <div class="reveal">
+        <p class="about-name">Phoebe A. Rose</p>
+        <span class="about-title-tag">Astromancer · Tarot Reader · Shadow Integration Guide</span>
+        <p class="about-text">
+          I work at the intersection of the cosmic and the deeply personal — where your birth chart becomes a map of your soul's architecture, where your shadows become your greatest sources of power, and where the cards tell the truth your conscious mind is still learning to hold.
+        </p>
+        <p class="about-text">
+          I don't do surface-level readings. I don't offer false comfort. I work with people who are <em>genuinely ready</em> — ready to examine what they've been carrying, ready to alchemize it, and ready to step into the version of themselves they sense is waiting.
+        </p>
+        <p class="about-text">
+          If you're here, it's not a coincidence.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── OFFERINGS ─────────────────────────────────── -->
+<section class="offerings-section" id="offerings">
+  <div class="section-inner">
+    <span class="section-label reveal">What I Offer</span>
+    <h2 class="section-title reveal">The Work</h2>
+    <p class="section-sub reveal">Each session is a sacred container. Come prepared to go deep.</p>
+
+    <div class="offerings-grid">
+
+      <!-- Tarot -->
+      <div class="offering-card reveal">
+        <span class="offering-glyph">🜂</span>
+        <span class="offering-tag">Divination</span>
+        <h3 class="offering-name">Tarot Readings</h3>
+        <p class="offering-desc">A focused, intuitive reading that speaks directly to where you are — the question beneath your question, the pattern beneath your pain, the path your higher self is already walking.</p>
+        <p class="offering-price">$88 – $155</p>
+        <p class="offering-price-note">Single card pull to full Celtic Cross spread</p>
+        <ul class="offering-includes">
+          <li>45–75 minute live session via Zoom</li>
+          <li>Recording provided after</li>
+          <li>Written summary & card imagery</li>
+          <li>Follow-up support window</li>
+        </ul>
+        <a href="#booking" class="btn-primary" style="font-size:10px;padding:13px 28px;">Book a Reading</a>
+      </div>
+
+      <!-- Astrology -->
+      <div class="offering-card reveal">
+        <span class="offering-glyph">☽</span>
+        <span class="offering-tag">Astromancy</span>
+        <h3 class="offering-name">Birth Chart Reading</h3>
+        <p class="offering-desc">Your natal chart is the soul's blueprint — the cosmic fingerprint of who you came here to be, what wounds you carry, and what gifts are ready to be activated. This is your story in the stars.</p>
+        <p class="offering-price">$125 – $200</p>
+        <p class="offering-price-note">Natal chart · Synastry · Transits & progressions</p>
+        <ul class="offering-includes">
+          <li>60–90 minute deep dive session</li>
+          <li>Full chart PDF provided</li>
+          <li>Recording + written insights</li>
+          <li>Birth data required at booking</li>
+        </ul>
+        <a href="#booking" class="btn-primary" style="font-size:10px;padding:13px 28px;">Book a Chart</a>
+      </div>
+
+      <!-- Shadow Work -->
+      <div class="offering-card reveal">
+        <span class="offering-glyph">🝰</span>
+        <span class="offering-tag">Integration</span>
+        <h3 class="offering-name">Shadow Work Sessions</h3>
+        <p class="offering-desc">This is the deepest work I do. Structured, held, and completely honest — we go into the rooms you've been avoiding. Projections, wounds, inner child, core beliefs. Bring your willingness. I'll bring the lantern.</p>
+        <p class="offering-price">$155 – $333</p>
+        <p class="offering-price-note">Single session or 3-session container</p>
+        <ul class="offering-includes">
+          <li>90 minute held session</li>
+          <li>Intake form required before booking</li>
+          <li>Tarot + astrology woven in</li>
+          <li>Integration practices provided</li>
+        </ul>
+        <a href="#booking" class="btn-primary" style="font-size:10px;padding:13px 28px;">Apply to Work Together</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── FOR YOU? ────────────────────────────────────── -->
+<section class="filter-section" id="for-you">
+  <div class="section-inner">
+    <span class="section-label reveal">Discernment</span>
+    <h2 class="section-title reveal">Is This Work For You?</h2>
+    <p class="section-sub reveal">I intentionally work with a small number of clients at a time. This is not for everyone — and that is by design.</p>
+
+    <div class="filter-grid">
+      <div class="filter-item reveal">
+        <span class="filter-label">You are a fit if you are...</span>
+        <ul class="filter-list">
+          <li>Ready to look honestly at your patterns</li>
+          <li>Committed to your own growth, not just curious</li>
+          <li>Willing to sit with discomfort</li>
+          <li>Open to astrology and tarot as real tools</li>
+          <li>Taking full responsibility for your life</li>
+          <li>Serious about shadow integration</li>
+        </ul>
+      </div>
+      <div class="filter-item no reveal">
+        <span class="filter-label">This may not be the space if you...</span>
+        <ul class="filter-list">
+          <li>Want someone to tell you what you want to hear</li>
+          <li>Are seeking a replacement for therapy</li>
+          <li>Expect magic without personal work</li>
+          <li>Are not ready to examine your own role</li>
+          <li>Want certainty instead of clarity</li>
+          <li>Are in active crisis (please seek professional support)</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="reveal" style="font-family:'Montserrat',sans-serif;font-style:italic;font-size:20px;color:var(--gold-pale);max-width:580px;margin:0 auto;">
+      "The right person for this work feels it in their chest when they read these words."
+    </p>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ───────────────────────────────── -->
+<section class="testimonials-section" id="testimonials">
+  <div class="section-inner">
+    <span class="section-label reveal">Words From The Work</span>
+    <h2 class="section-title reveal">Client Reflections</h2>
+    <div class="gold-rule reveal"></div>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">Phoebe saw things in my chart that I had never been able to articulate about myself. I left the session feeling like I had been handed a map to my own soul.</p>
+        <p class="testimonial-name">— S.M.</p>
+        <p class="testimonial-note">Birth Chart Reading</p>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">The shadow work session was the most honest conversation I have ever had. Not comfortable — but I didn't come for comfort. I came for truth.</p>
+        <p class="testimonial-name">— T.R.</p>
+        <p class="testimonial-note">Shadow Work Session</p>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">Her tarot reading felt like a direct transmission. Every single card landed exactly where it needed to. I cried twice and laughed once. That's how I know it was real.</p>
+        <p class="testimonial-name">— A.L.</p>
+        <p class="testimonial-note">Tarot Reading</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BOOKING ─────────────────────────────────────── -->
+<section class="booking-section" id="booking">
+  <div class="section-inner">
+    <span class="section-label reveal">Begin</span>
+    <h2 class="section-title reveal">Book a Session</h2>
+    <p class="section-sub reveal">Choose your path below — or reach out directly if you're not sure where to start.</p>
+
+    <div class="booking-grid">
+
+      <!-- Calendly -->
+      <div class="reveal">
+        <h3 class="booking-block-title">Ready to Book?</h3>
+        <p class="booking-block-sub">Select a session type and find a time that works for you. Shadow Work sessions require a short intake form before your slot is confirmed.</p>
+        <!-- Calendly inline widget begin -->
+        <div class="calendly-inline-widget" data-url="https://calendly.com/queenofwandsastro?hide_landing_page_details=1&hide_gdpr_banner=1&primary_color=ffc300" style="min-width:320px;height:700px;"></div>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+        <!-- Calendly inline widget end -->
+      </div>
+
+      <!-- Contact Form -->
+      <div class="reveal">
+        <h3 class="booking-block-title">Send a Message</h3>
+        <p class="booking-block-sub">Have questions before booking? Want to share a little about what's bringing you here? I'd love to hear from you.</p>
+
+        <div class="form-success" id="form-success">
+          <p>✦ Your message has been received.</p>
+          <p style="font-size:15px;color:var(--muted);margin-top:8px;font-family:'Montserrat',sans-serif;">I will be in touch within 2–3 days. Thank you for reaching out.</p>
+        </div>
+
+        <form class="contact-form" id="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label class="form-label">Your Name</label>
+            <input type="text" class="form-input" placeholder="Full name" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" class="form-input" placeholder="your@email.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">I'm Interested In</label>
+            <select class="form-select form-input">
+              <option value="" disabled selected>Select a session type...</option>
+              <option>Tarot Reading</option>
+              <option>Birth Chart Reading</option>
+              <option>Shadow Work Session</option>
+              <option>I'm not sure yet — just reaching out</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">What's Bringing You Here?</label>
+            <textarea class="form-textarea" placeholder="Share a little about where you are and what you're working with. The more honest you are, the better I can sense if this is a good fit." required></textarea>
+          </div>
+          <p class="form-note">✦ I read every message personally. I only take on clients I feel genuinely called to work with — so please be real with me here.</p>
+          <button type="submit" class="btn-primary" style="align-self:flex-start;">Send Message ✦</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ──────────────────────────────────────── -->
+<footer>
+  <p class="footer-logo">Queen of Wands</p>
+  <p class="footer-tagline">Astromancy & Shadow Integration with Phoebe A. Rose</p>
+  <ul class="footer-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#offerings">Offerings</a></li>
+    <li><a href="#for-you">For You?</a></li>
+    <li><a href="#booking">Book</a></li>
+    <li><a href="#booking">Contact</a></li>
+    <li><a href="https://www.etsy.com/shop/AstralRoseAlchemy" target="_blank">Etsy Shop</a></li>
+  </ul>
+  <div class="footer-divider"></div>
+  <p class="footer-copy">© 2026 Phoebe A. Rose · queenofwandsastromancy.com · All rights reserved</p>
+</footer>
+
+</div><!-- /.site-wrap -->
+
+<script>
+// ── Starfield ──────────────────────────────────────
+const canvas = document.getElementById('star-canvas');
+const ctx = canvas.getContext('2d');
+let stars = [];
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+function initStars() {
+  stars = [];
+  const count = Math.floor((canvas.width * canvas.height) / 8000);
+  for (let i = 0; i < count; i++) {
+    stars.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.2 + 0.2,
+      alpha: Math.random() * 0.6 + 0.1,
+      speed: Math.random() * 0.004 + 0.001,
+      offset: Math.random() * Math.PI * 2
+    });
+  }
+}
+
+function drawStars(t) {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  stars.forEach(s => {
+    const a = s.alpha * (0.5 + 0.5 * Math.sin(t * s.speed + s.offset));
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(232, 204, 126, ${a})`;
+    ctx.fill();
+  });
+  requestAnimationFrame(drawStars);
+}
+
+resizeCanvas(); initStars(); requestAnimationFrame(drawStars);
+window.addEventListener('resize', () => { resizeCanvas(); initStars(); });
+
+// ── Nav scroll behavior ────────────────────────────
+const nav = document.getElementById('main-nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ── Mobile nav toggle ──────────────────────────────
+document.getElementById('nav-toggle').addEventListener('click', () => {
+  document.getElementById('nav-links').classList.toggle('open');
+});
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => document.getElementById('nav-links').classList.remove('open'));
+});
+
+// ── Scroll reveal ──────────────────────────────────
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      revealObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ── Contact form ───────────────────────────────────
+function handleSubmit(e) {
+  e.preventDefault();
+  document.getElementById('contact-form').style.display = 'none';
+  document.getElementById('form-success').classList.add('show');
+  // TO ACTIVATE: replace with your preferred form handler
+  // Options: Formspree (formspree.io), EmailJS, Netlify Forms, etc.
+  // Example with Formspree:
+  // fetch('https://formspree.io/f/YOUR_FORM_ID', { method:'POST', body: new FormData(e.target) })
+}
+
+// ── Smooth scroll for anchor links ────────────────
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+</body>
+</html>
+
