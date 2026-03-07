@@ -367,9 +367,7 @@ section { position: relative; z-index: 1; }
   height: 100%;
   object-fit: cover;
 }
-.about-image-placeholder.has-image .symbol,
-.about-image-placeholder.has-image p { display: none; }
-.about-image-placeholder .upload-overlay {
+
   position: absolute;
   inset: 0;
   background: rgba(7,6,10,0.7);
@@ -390,7 +388,6 @@ section { position: relative; z-index: 1; }
   color: var(--gold);
   text-transform: uppercase;
 }
-.about-image-placeholder .upload-overlay .upload-icon { font-size: 28px; opacity: 0.8; }
 
 /* ── About Image ─────────────────────────────────── */
 .about-image {
@@ -401,7 +398,7 @@ section { position: relative; z-index: 1; }
   transition: border-color 0.3s;
 }
 .about-image:hover { border-color: rgba(201,168,76,0.4); }
-#photo-upload { display: none; }
+
 
 .about-name {
   font-family: 'Kings', cursive;
@@ -861,9 +858,9 @@ footer {
     <div class="gold-rule reveal"></div>
 
     <div class="about-grid">
-      <div class="about-image-frame reveal">
-        <img src="phoebe-photo.jpg" alt="Phoebe A. Rose" class="about-image">
-      </div>
+   <div class="about-image-frame reveal">
+  <img src="phoebe-photo.jpg" alt="Phoebe A. Rose" class="about-image">
+</div>
       <div class="reveal">
         <p class="about-name">Phoebe A. Rose</p>
         <span class="about-title-tag">Astromancer · Tarot Reader · Shadow Integration Guide</span>
